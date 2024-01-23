@@ -65,18 +65,19 @@ package LiFxServerAFKFix
     if(%rs.ok() && %rs.nextRecord())
     {
       %ClientID = %rs.getFieldValue("ClientID");
-      %Active = %rs.getFieldValue("Active");
 
       for(%id = 0; %id < ClientGroup.getCount(); %id++)
       {
         %client = ClientGroup.getObject(%id);
-        if(%client.ConnectedTime <= (getUnixTime() - 60) && !isObject(%client.Player) && %client != LiFxServerAFKFix.ConReq.client)
+        if(%ClientID == %client.getCharacterId())
         {
+          warn("Character " SPC %client SPC " kicked for idling");
           %client.scheduleDelete("You have been ejected from the server due to inactivity (AFK)", 100);
           break;
         } 
       }
       if(ClientGroup.getCount() == %id) {
+        warn("Connection from" SPC %this.ConReq.NetAddress SPC "(" @ %this.ConReq.Name @ ")" SPC "dropped due to CR_SERVERFULL_NO_IDLERS");
         %this.ConReq.Client.scheduleDelete("Server is full without idlers, try again in 5 mins", 100);
       }
       
