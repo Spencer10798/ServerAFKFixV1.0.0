@@ -40,7 +40,7 @@ package LiFxServerAFKFix
     dbi.Update(%character_before_update);
   }
   function LiFxServerAFKFix::version() {
-    return "v0.1.AFK";
+    return "v1.0.0.AFK";
   }
 
   function LiFxServerAFKFix::onConnectClient(%this, %client) {
