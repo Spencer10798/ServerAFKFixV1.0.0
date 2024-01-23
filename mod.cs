@@ -26,7 +26,6 @@ package LiFxServerAFKFix
     LiFx::registerCallback($LiFx::hooks::onPostConnectRoutineCallbacks, onPostConnectRequest, LiFxServerAFKFix);
     LiFx::registerCallback($LiFx::hooks::onInitServerDBChangesCallbacks, dbInit, LiFxServerAFKFix);
     LiFx::registerCallback($LiFx::hooks::onConnectCallbacks,onConnectClient, LiFxServerAFKFix);
-    LiFx::registerCallback($LiFx::hooks::onConnectCallbacks,onConnectClient, LiFxServerAFKFix);
   }
   
   function LiFxServerAFKFix::dbInit() {
